@@ -65,25 +65,22 @@ int main(){
     double total_t = 0;
 
     start_t = clock();
-    for(int i = 0;i < 200000;i += 2){
+    for(int i = 0;i < 200000;i += 2)
         gcd64_1(data[i],data[i+1]);
-    }
     finish_t = clock();
     total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
     printf("time: %f s\n", total_t);
 
     start_t = clock();
-    for(int i = 0;i < 200000;i += 2){
+    for(int i = 0;i < 200000;i += 2)
         gcd64_2(data[i],data[i+1]);
-    }
     finish_t = clock();
     total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
     printf("time: %f s\n", total_t);
 
     start_t = clock();
-    for(int i = 0;i < 200000;i += 2){
+    for(int i = 0;i < 200000;i += 2)
         gcd64_3(data[i],data[i+1]);
-    }
     finish_t = clock();
     total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
     printf("time: %f s\n", total_t);
