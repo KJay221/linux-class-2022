@@ -8,7 +8,6 @@ uint64_t good_gcd64(uint64_t u, uint64_t v)
     if (!u || !v) return u | v;
     int shift = __builtin_ctz(u) ^ ((__builtin_ctz(u) ^ __builtin_ctz(v)) & -(__builtin_ctz(u) > __builtin_ctz(v)));
     u >>= __builtin_ctz(u);
-    v >>= __builtin_ctz(v);
     do {
         v >>= __builtin_ctz(v);
         if (u < v) {
@@ -44,7 +43,7 @@ int main(){
 
     //use __builtin_ctz()
     start_t = clock();
-    for(int i =0;i<200000;i+=2){
+    for(int i = 0;i < 200000;i += 2){
         good_gcd64(data[i],data[i+1]);
     }
     finish_t = clock();
@@ -53,7 +52,7 @@ int main(){
 
     //origin
     start_t = clock();
-    for(int i =0;i<200000;i+=2){
+    for(int i = 0;i < 200000;i += 2){
         gcd64(data[i],data[i+1]);
     }
     finish_t = clock();
