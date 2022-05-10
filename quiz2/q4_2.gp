@@ -4,7 +4,7 @@ set xlabel 'bitmap density'
 set ylabel 'time(sec)'
 set term png font 'Times_New_Roman,12'
 set output 'runtime.png'
-set xtics 1 ,8 ,64
+set xtics 0 ,8 ,64
 set key left
 
 plot \

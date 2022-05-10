@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-# define TEST_SIZE 10000
 
 size_t naive(uint64_t *bitmap, size_t bitmapsize, uint32_t *out)
 {
@@ -35,7 +34,8 @@ size_t improved(uint64_t *bitmap, size_t bitmapsize, uint32_t *out)
     return pos;
 }
 
-int main(){
+int main(int argc, char *argv[]){
+    int size = atoi(argv[1]);
     FILE *txt;
     txt = fopen("q4_2.txt","w");
     if(!txt){
@@ -49,8 +49,8 @@ int main(){
 
         //generate data
         srand(time(0));
-        uint64_t data[TEST_SIZE] = {0};
-        for(int i = 0;i < TEST_SIZE; ++i){
+        uint64_t *data = calloc(size, sizeof(uint64_t));
+        for(int i = 0;i < size; ++i){
             for(int j = 0;j < density; ++j){
                 while(1){
                     int setbit = rand() % 64;
@@ -63,25 +63,28 @@ int main(){
         }
 
         
-        uint32_t *output = malloc(32*density*TEST_SIZE);
+        uint32_t *output = malloc(32*density*size);
         clock_t start_t,finish_t;
         double total_t = 0;
 
         //test naive time
         start_t = clock();
-        for(int i = 0;i < TEST_SIZE; ++i)
-            naive(data, TEST_SIZE, output);
+        for(int i = 0;i < size; ++i)
+            naive(data, size, output);
         finish_t = clock();
         total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
         fprintf(txt, "%f ", total_t);
 
         //test improve time
         start_t = clock();
-        for(int i = 0;i < TEST_SIZE; ++i)
-            improved(data, TEST_SIZE, output);
+        for(int i = 0;i < size; ++i)
+            improved(data, size, output);
         finish_t = clock();
         total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
         fprintf(txt, "%f\n", total_t);
+
+        free(output);
+        free(data);
     }
     fclose(txt);
 }
