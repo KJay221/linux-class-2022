@@ -6,14 +6,6 @@
 
 #define SIZE 10000
 
-static inline bool is_divisible(uint32_t n, uint64_t M)
-{
-    return n * M <= M - 1;
-}
-
-static uint64_t M3 = UINT64_C(0xFFFFFFFFFFFFFFFF) / 3 + 1;
-static uint64_t M5 = UINT64_C(0xFFFFFFFFFFFFFFFF) / 5 + 1;
-
 int main() {
     clock_t start_t,finish_t;
     double total_t = 0;
