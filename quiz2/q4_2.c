@@ -63,27 +63,27 @@ int main(int argc, char *argv[]){
         }
 
         
-        uint32_t *output = malloc(32*density*size);
         clock_t start_t,finish_t;
         double total_t = 0;
 
         //test naive time
+        uint32_t *output = malloc(32*density*size);
         start_t = clock();
-        for(int i = 0;i < size; ++i)
-            naive(data, size, output);
+        naive(data, size, output);
         finish_t = clock();
         total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
         fprintf(txt, "%f ", total_t);
+        free(output);
 
         //test improve time
+        output = malloc(32*density*size);
         start_t = clock();
-        for(int i = 0;i < size; ++i)
-            improved(data, size, output);
+        improved(data, size, output);
         finish_t = clock();
         total_t = (double)(finish_t - start_t) / CLOCKS_PER_SEC;
         fprintf(txt, "%f\n", total_t);
-
         free(output);
+
         free(data);
     }
     fclose(txt);
